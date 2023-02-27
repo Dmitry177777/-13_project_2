@@ -23,5 +23,6 @@ class Item ():
 
         """Метод расчета дискаунта"""
 
-        self.price =self.price*self.pay_rate
-        pass
+        self.price = self.price * self.pay_rate
+
+        return
