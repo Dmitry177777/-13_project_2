@@ -1,19 +1,25 @@
 from data.class_products import Item
 
-item1 = Item("Смартфон", 10000, 20)
-item2 = Item("Ноутбук", 20000, 5)
+item = Item('Телефон', 10000, 5)
+item.name = 'Смартфон'
+print(item.name)
+# Смартфон
 
-print(item1.calculate_total_price())
-print(item2.calculate_total_price())
-#200000  # общая стоимость смартфонов
-#100000  # общая стоимость ноутбуков
+item.name = 'СуперСмартфон'
+# Exception: Длина наименования товара превышает 10 символов.
 
-Item.pay_rate = 0.8  # устанавливаем новый уровень цен
-item1.apply_discount()
-print(item1.price)
-print(item2.price)
-#8000.0  # к цене смартфона применена скидка
-#20000  # к цене ноутбука скидка не была применена
+f = 'project_1\data\items.csv'
+Item.instantiate_from_csv(f)  # создание объектов из данных файла
+print(len(Item.all))  # в файле 5 записей с данными по товарам
+# 5
+item1 = Item.all[0]
+print(item1.name)
+# Смартфон
 
-print(Item.all)
-#[<__main__.Item object at 0x000001EC6250C690>, <__main__.Item object at 0x000001EC6250C6D0>]
+
+# print(Item.is_integer(5))
+# print(Item.is_integer(5.0))
+# print(Item.is_integer(5.5))
+# True
+# True
+# False
