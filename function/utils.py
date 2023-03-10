@@ -1,4 +1,10 @@
 from data.class_products import Item
+# import os.path
+# import sys
+# file_dir = os.path.dirname('E:\Python_SqyPro\\4_object_oriented_programming\project_1\data\class_products.py')
+# sys.path.append(file_dir)
+
+
 
 item = Item('Телефон', 10000, 5)
 item.name = 'Смартфон'
