@@ -1,5 +1,7 @@
 import csv
-class Item ():
+
+
+class Item():
     """"Класс категорий товаров"""
     all = []
     pay_rate = 1
@@ -9,6 +11,8 @@ class Item ():
         self.price = price  # цена
         self.quantity = quantity  # кол-во
 
+    def __repr__(self):
+        pass
 
     @property
     def name(self):
