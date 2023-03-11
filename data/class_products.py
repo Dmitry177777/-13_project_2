@@ -5,14 +5,19 @@ class Item ():
     pay_rate = 1
 
     def __init__(self, name: str, price, quantity):
-        self.name = name # наименование
+        self.name = name  # наименование
         self.price = price  # цена
         self.quantity = quantity  # кол-во
 
-
     @property
     def name(self):
-        Item.all.append(self._name)
+        dict_i = {
+            'name': self._name,
+            'price': self.price,
+            'quantity': self.quantity
+        }
+        dict_ii = dotdict(dict_i)
+        Item.all.append(dict_ii)
         return self._name
 
     @name.setter
@@ -29,7 +34,7 @@ class Item ():
         # fieldnames = ['name', 'price', 'quantity']
         with open(f, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
-            [cls(row['name'],row['price'],row['quantity']).name for row in reader]
+            i = [cls(row['name'], row['price'], row['quantity']).name for row in reader]
 
         return
 
@@ -48,3 +53,10 @@ class Item ():
         self.price = self.price * self.pay_rate
 
         return
+
+
+class dotdict(dict):
+    """dot.notation access to dictionary attributes"""
+    __getattr__ = dict.get
+    __setattr__ = dict.__setitem__
+    __delattr__ = dict.__delitem__
