@@ -5,6 +5,12 @@ item.name = 'Смартфон'
 print(item.name)
 # Смартфон
 
+
+print(repr(item))
+# Смартфон
+print(item)
+# Смартфон
+
 item.name = 'СуперСмартфон'
 # Exception: Длина наименования товара превышает 10 символов.
 

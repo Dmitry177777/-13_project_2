@@ -12,7 +12,10 @@ class Item():
         self.quantity = quantity  # кол-во
 
     def __repr__(self):
-        pass
+        return f'Item({self.name}, {self.price}, {self.quantity})'
+
+    def __str__(self):
+        return f'{self.name}'
 
     @property
     def name(self):
@@ -49,7 +52,7 @@ class Item():
                 if Item.is_integer(row_quantity):
                     row_quantity = int(row_quantity)
 
-                cls(row_name, row_price, row_quantity).name
+                i = cls(row_name, row_price, row_quantity).name
         return
 
     def calculate_total_price(self):
