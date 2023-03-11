@@ -9,6 +9,7 @@ class Item ():
         self.price = price  # цена
         self.quantity = quantity  # кол-во
 
+
     @property
     def name(self):
         dict_i = {
@@ -34,8 +35,17 @@ class Item ():
         # fieldnames = ['name', 'price', 'quantity']
         with open(f, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
-            i = [cls(row['name'], row['price'], row['quantity']).name for row in reader]
 
+            for row in reader:
+                row_name = row['name']
+                row_price = row['price']
+                row_quantity = row['quantity']
+                if Item.is_integer(row_price):
+                    row_price = int(row_price)
+                if Item.is_integer(row_quantity):
+                    row_quantity = int(row_quantity)
+
+                cls(row_name, row_price, row_quantity).name
         return
 
     def calculate_total_price(self):
@@ -45,14 +55,19 @@ class Item ():
 
         return total_price
 
-
-    def apply_discount (self):
+    def apply_discount(self):
 
         """Метод расчета дискаунта"""
 
         self.price = self.price * self.pay_rate
 
         return
+
+    @staticmethod
+    def is_integer(x):
+        # isInt = isinstance(number, int)
+        isInt = int(x) == x
+        return isInt  # True
 
 
 class dotdict(dict):

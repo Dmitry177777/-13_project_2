@@ -20,9 +20,9 @@ print(item1.name)
 # Смартфон
 
 
-# print(Item.is_integer(5))
-# print(Item.is_integer(5.0))
-# print(Item.is_integer(5.5))
+print(Item.is_integer(5))
+print(Item.is_integer(5.0))
+print(Item.is_integer(5.5))
 # True
 # True
 # False
