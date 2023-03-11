@@ -4,32 +4,34 @@ class Item ():
     all = []
     pay_rate = 1
 
-    def __init__(self, name, price, quantity):
-        self._name = name  # наименование
+    def __init__(self, name: str, price, quantity):
+        self.name = name # наименование
         self.price = price  # цена
         self.quantity = quantity  # кол-во
-        Item.all.append(Item)
+
 
     @property
     def name(self):
+        Item.all.append(self._name)
         return self._name
 
     @name.setter
-    def name(self, new_name):
+    def name(self, new_name: str):
         if len(new_name) <= 10 and isinstance(new_name, str):
             self._name = new_name
         else:
             print("Название товара превышает 10 символов")
 
-    @staticmethod
-    def instantiate_from_csv(f):
+    @classmethod
+    def instantiate_from_csv(cls, f):
         """выгрузка и инициализация данных из файла csv"""
 
-        fieldnames = ['name', 'price', 'quantity']
-        with open(f, 'w', newline='') as csvfile:
-            reader = csv.DictReader(csvfile, fieldnames=fieldnames, restkey=None, dialect='excel')
-            print(reader)
-        pass
+        # fieldnames = ['name', 'price', 'quantity']
+        with open(f, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            [cls(row['name'],row['price'],row['quantity']).name for row in reader]
+
+        return
 
     def calculate_total_price(self):
         """Метод расчета общей стоимости"""
