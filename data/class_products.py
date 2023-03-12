@@ -24,7 +24,7 @@ class Item():
             'price': self.price,
             'quantity': self.quantity
         }
-        dict_ii = dotdict(dict_i)
+        dict_ii = Dotdict(dict_i)
         Item.all.append(dict_ii)
         return self._name
 
@@ -84,18 +84,23 @@ class Item():
 
 
 class Phone(Item):
-    def __int__(self, name, price, quantity, number_of_sim):
+    """ новый наследуемый класс"""
+
+    def __init__(self, name, price, quantity, number_of_sim):
         super().__init__(name, price, quantity)
-        self.number_of_sim = number_of_sim
+        if isinstance(number_of_sim, int) and (number_of_sim > 0):
+            self.number_of_sim = number_of_sim  # сим
+        else:
+            raise ValueError('Количество физических SIM-карт должно быть целым числом больше нуля')
 
-        # if isinstance(number_of_sim, int) and (number_of_sim > 0):
-        #     self.number_of_sim = number_of_sim
-        #     return
-        # else:
-        #     raise ValueError('Количество физических SIM-карт должно быть целым числом больше нуля')
+    def __repr__(self):
+        return f'Phone({self.name}, {self.price}, {self.quantity},{self.number_of_sim})'
+
+    def __str__(self):
+        return f'{self.name}'
 
 
-class dotdict(dict):
+class Dotdict(dict):
     """dot.notation access to dictionary attributes"""
     __getattr__ = dict.get
     __setattr__ = dict.__setitem__
