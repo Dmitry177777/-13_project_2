@@ -6,7 +6,7 @@ class Item():
     all = []
     pay_rate = 1
 
-    def __init__(self, name: str, price, quantity):
+    def __init__(self, name, price, quantity):
         self.name = name  # наименование
         self.price = price  # цена
         self.quantity = quantity  # кол-во
@@ -84,13 +84,15 @@ class Item():
 
 
 class Phone(Item):
-    def __int__(self, name, price, quantity, number_of_sim: int, a):
+    def __int__(self, name, price, quantity, number_of_sim):
         super().__init__(name, price, quantity)
-        self.a = a
-        if isinstance(number_of_sim, int) and number_of_sim > 0:
-            self.number_of_sim = number_of_sim
-        else:
-            raise ValueError('Количество физических SIM-карт должно быть целым числом больше нуля')
+        self.number_of_sim = number_of_sim
+
+        # if isinstance(number_of_sim, int) and (number_of_sim > 0):
+        #     self.number_of_sim = number_of_sim
+        #     return
+        # else:
+        #     raise ValueError('Количество физических SIM-карт должно быть целым числом больше нуля')
 
 
 class dotdict(dict):
