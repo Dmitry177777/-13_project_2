@@ -46,7 +46,7 @@ class Item ():
                     row_quantity = int(row_quantity)
 
                 i = cls(row_name, row_price, row_quantity).name
-        returnname
+        return
 
     def calculate_total_price(self):
         """Метод расчета общей стоимости"""
