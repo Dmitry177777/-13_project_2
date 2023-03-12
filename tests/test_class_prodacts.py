@@ -7,7 +7,7 @@ pay_rate = 1
 
 
 def test_init():
-  assert item1.categories == "Смартфон"
+  assert item1.name == "Смартфон"
   assert item1.price == 10000
   assert item1.quantity == 20
   # Item.all.append(Item)

@@ -76,6 +76,20 @@ class Item():
         isInt = int(x) == x
         return isInt  # True
 
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        else:
+            raise ValueError('Запрещена операция с экземплярами классов не родственных Item')
+
+class Phone(Item):
+    def __int__(self, name, price, quantity, number_of_sim: int, a):
+        super().__init__(name, price, quantity)
+        self.a = a
+        if isinstance(number_of_sim , int) and number_of_sim > 0:
+            self.number_of_sim = number_of_sim
+        else:
+            raise ValueError ('Количество физических SIM-карт должно быть целым числом больше нуля')
 
 class dotdict(dict):
     """dot.notation access to dictionary attributes"""
