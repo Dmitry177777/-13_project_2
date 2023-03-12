@@ -45,7 +45,7 @@ class Item ():
                 if Item.is_integer(row_quantity):
                     row_quantity = int(row_quantity)
 
-                cls(row_name, row_price, row_quantity).name
+                i = cls(row_name, row_price, row_quantity).name
         return
 
     def calculate_total_price(self):
