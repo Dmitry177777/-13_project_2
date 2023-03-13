@@ -35,10 +35,22 @@ def test_apply_discount():
 
 
 def test_is_integer():
-  assert item1.is_integer(item1.quantity) == True
-  assert item2.is_integer(item2.quantity) == True
-  assert item3.is_integer(item3.quantity) == False
+    assert item1.is_integer(item1.quantity) == True
+    assert item2.is_integer(item2.quantity) == True
+    assert item3.is_integer(item3.quantity) == False
 
 
 def test_instantiate_from_csv():
-  assert Item.instantiate_from_csv(f) == item_all
+    assert Item.instantiate_from_csv(f) == item_all
+
+
+def test__repr__():
+    assert item1.__repr__() == f'Item(Смартфон, 10000, 20)'
+    assert item2.__repr__() == f'Item(Ноутбук, 20000, 5)'
+    assert item3.__repr__() == f'Item(Ручка, 2200, 5.5)'
+
+
+def test__str__():
+    assert item1.__str__() == f'Смартфон'
+    assert item2.__str__() == f'Ноутбук'
+    assert item3.__str__() == f'Ручка'
