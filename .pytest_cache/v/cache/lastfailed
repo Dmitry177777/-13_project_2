@@ -1,0 +1,4 @@
+{
+  "tests/test_function.py::TestUtils::test_init_operation": true,
+  "tests/test_function.py::TestUtils::test_load": true
+}

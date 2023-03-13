@@ -22,3 +22,13 @@ def test_apply_discount():
   discount_price = item1.price * item1.pay_rate
   item1.apply_discount()
   assert item1.price == discount_price
+
+
+def test_is_integer():
+  assert item1.is_integer(item1.quantity) == True
+  assert item2.is_integer(item2.quantity) == True
+  assert item3.is_integer(item3.quantity) == False
+
+
+def test_instantiate_from_csv():
+  assert Item.instantiate_from_csv(f) == item_all

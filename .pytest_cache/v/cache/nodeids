@@ -1,0 +1,7 @@
+[
+  "tests/test_class_prodacts.py::test_apply_discount",
+  "tests/test_class_prodacts.py::test_calculate_total_price",
+  "tests/test_class_prodacts.py::test_init",
+  "tests/test_function.py::TestUtils::test_init_operation",
+  "tests/test_function.py::TestUtils::test_load"
+]
