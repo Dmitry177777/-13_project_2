@@ -2,15 +2,25 @@ from data.class_products import Item
 
 item1 = Item("Смартфон", 10000, 20)
 item2 = Item("Ноутбук", 20000, 5)
+item3 = Item("Ручка", 2200, 5.5)
 all = []
 pay_rate = 1
 
+f = '..\data\items.csv'
+item_all = [{'_name': 'Смартфон', 'price': 10000, 'quantity': 20},
+            {'_name': 'Смартфон', 'price': '100', 'quantity': '1'},
+            {'_name': 'Ноутбук', 'price': '1000', 'quantity': '3'},
+            {'_name': 'Кабель', 'price': '10', 'quantity': '5'},
+            {'_name': 'Мышка', 'price': '50', 'quantity': '5'},
+            {'_name': 'Клавиатура', 'price': '75', 'quantity': '5'}
+            ]
+
 
 def test_init():
-  assert item1.name == "Смартфон"
-  assert item1.price == 10000
-  assert item1.quantity == 20
-  # Item.all.append(Item)
+    assert item1.name == "Смартфон"
+    assert item1.price == 10000
+    assert item1.quantity == 20
+    # Item.all.append(Item)
 
 
 def test_calculate_total_price():
