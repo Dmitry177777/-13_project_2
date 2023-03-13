@@ -10,10 +10,10 @@ item.name = 'СуперСмартфон'
 
 f = '..\data\items.csv'
 # E:\Python_SqyPro\\4_object_oriented_programming\project_1\
-Item.instantiate_from_csv(f)  # создание объектов из данных файла
+print(Item.instantiate_from_csv(f))  # создание объектов из данных файла
 print(len(Item.all))  # в файле 5 записей с данными по товарам
 # 5
-print(Item.all)
+# print(Item.all)
 item1 = Item.all[0]
 
 print(item1.name)
