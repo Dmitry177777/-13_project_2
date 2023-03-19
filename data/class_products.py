@@ -99,14 +99,11 @@ class Phone(Item):
         else:
             return ValueError('Количество физических SIM-карт должно быть целым числом больше нуля')
 
-
-
     def __repr__(self):
         return f'Phone({self.name}, {self.price}, {self.quantity},{self.number_of_sim})'
 
     def __str__(self):
         return f'{self.name}'
-
 
 
 class dotdict(dict):

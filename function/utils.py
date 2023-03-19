@@ -16,10 +16,6 @@ print(repr(phone1))
 # ValueError: Количество физических SIM-карт должно быть целым числом больше нуля.
 
 
-
-
-
-
 # item = Item('Телефон', 10000, 5)
 # item.name = 'Смартфон'
 # print(item.name)
