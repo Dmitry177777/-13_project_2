@@ -95,9 +95,8 @@ class Phone(Item):
     def number_of_sim(self, new_number_of_sim):
         if isinstance(new_number_of_sim, int) and new_number_of_sim > 0:
             self.number_of_sim_ = new_number_of_sim  # сим
-            return
         else:
-            return ValueError('Количество физических SIM-карт должно быть целым числом больше нуля')
+           print(f'ValueError: Количество физических SIM-карт должно быть целым числом больше нуля.')
 
     def __repr__(self):
         return f'Phone({self.name}, {self.price}, {self.quantity},{self.number_of_sim})'
