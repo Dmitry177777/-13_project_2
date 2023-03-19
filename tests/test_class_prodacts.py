@@ -1,4 +1,5 @@
 from data.class_products import Item
+from data.class_products import Phone
 
 item1 = Item("Смартфон", 10000, 20)
 item2 = Item("Ноутбук", 20000, 5)
@@ -8,6 +9,7 @@ pay_rate = 1
 
 f = '..\data\items.csv'
 item_all = [{'_name': 'Смартфон', 'price': 10000, 'quantity': 20},
+            {'_name': 'iPhone 14', 'price': 120000, 'quantity': 5},
             {'_name': 'Смартфон', 'price': '100', 'quantity': '1'},
             {'_name': 'Ноутбук', 'price': '1000', 'quantity': '3'},
             {'_name': 'Кабель', 'price': '10', 'quantity': '5'},
@@ -15,11 +17,19 @@ item_all = [{'_name': 'Смартфон', 'price': 10000, 'quantity': 20},
             {'_name': 'Клавиатура', 'price': '75', 'quantity': '5'}
             ]
 
+phone1 = Phone('iPhone 14', 120_000, 5, 2)
+
 
 def test_init():
     assert item1.name == "Смартфон"
     assert item1.price == 10000
     assert item1.quantity == 20
+
+    assert phone1.name == "iPhone 14"
+    assert phone1.price == 120_000
+    assert phone1.quantity == 5
+    assert phone1.number_of_sim == 2
+
     # Item.all.append(Item)
 
 
