@@ -7,7 +7,7 @@ class Item():
     pay_rate = 1
 
     def __init__(self, name: str, price, quantity):
-        self.name = name  # наименование
+        self._name = name  # наименование
         self.price = price  # цена
         self.quantity = quantity  # кол-во
 
@@ -20,7 +20,7 @@ class Item():
     @property
     def name(self):
         dict_i = {
-            'name': self._name,
+            '_name': self._name,
             'price': self.price,
             'quantity': self.quantity
         }
@@ -52,9 +52,8 @@ class Item():
                 if Item.is_integer(row_quantity):
                     row_quantity = int(row_quantity)
 
-                i = cls(row_name, row_price, row_quantity).name
-        return
-
+                cls.all.append(cls(row_name, row_price, row_quantity).__dict__)
+        return cls.all
     def calculate_total_price(self):
         """Метод расчета общей стоимости"""
 
