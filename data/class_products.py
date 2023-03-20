@@ -104,6 +104,29 @@ class Phone(Item):
     def __str__(self):
         return f'{self.name}'
 
+class MixingLog:
+    def __init__(self, *args):
+        cls = type (self)
+        cls.language = 'EN'
+        self.language=cls.language
+        super().__init__(*args)
+
+    def change_lang(self):
+        if self.language =='EN':
+            self.language = 'RU'
+        else:
+            self.language = 'EN'
+
+
+class KeyBoard(MixingLog,Item):
+    """ новый наследуемый класс"""
+
+    def __init__(self, name, price, quantity):
+        super().__init__(name, price, quantity)
+        self.language  = EN  # Язык по умолчанию (при инициализации) - английский (EN)
+
+
+
 
 class dotdict(dict):
     """dot.notation access to dictionary attributes"""
