@@ -1,4 +1,5 @@
 from data.class_products import Item
+from data.class_products import KeyBoard
 from data.class_products import Phone
 
 item1 = Item("Смартфон", 10000, 20)
@@ -10,6 +11,7 @@ pay_rate = 1
 f = '..\data\items.csv'
 item_all = [{'_name': 'Смартфон', 'price': 10000, 'quantity': 20},
             {'_name': 'iPhone 14', 'price': 120000, 'quantity': 5},
+            {'_name': 'Dark Project KD87A', 'price': 9600, 'quantity': 5},
             {'_name': 'Смартфон', 'price': '100', 'quantity': '1'},
             {'_name': 'Ноутбук', 'price': '1000', 'quantity': '3'},
             {'_name': 'Кабель', 'price': '10', 'quantity': '5'},
@@ -18,6 +20,7 @@ item_all = [{'_name': 'Смартфон', 'price': 10000, 'quantity': 20},
             ]
 
 phone1 = Phone('iPhone 14', 120_000, 5, 2)
+kb1 = KeyBoard('Dark Project KD87A', 9600, 5)
 
 
 def test_init():
@@ -30,8 +33,19 @@ def test_init():
     assert phone1.quantity == 5
     assert phone1.number_of_sim == 2
 
+    assert kb1.name == "Dark Project KD87A"
+    assert kb1.price == 9600
+    assert kb1.quantity == 5
+
     # Item.all.append(Item)
 
+
+def test_change_lang():
+    assert kb1.language == "EN"
+    kb1.change_lang()
+    assert kb1.language == "RU"
+    kb1.change_lang()
+    assert kb1.language == "EN"
 
 def test_calculate_total_price():
   assert item1.calculate_total_price() == item1.price * item1.quantity

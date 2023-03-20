@@ -1,5 +1,5 @@
-from data.class_products import Item
-from data.class_products import Phone
+# from data.class_products import Item
+# from data.class_products import Phone
 from data.class_products import KeyBoard
 
 kb = KeyBoard('Dark Project KD87A', 9600, 5)
@@ -13,14 +13,8 @@ print(kb.language)
 # RU
 
 kb.language = 'CH'
+
 # AttributeError: property 'language' of 'KeyBoard' object has no setter
-
-
-
-
-
-
-
 
 
 # # смартфон iPhone 14, цена 120_000, количетсво товара 5, симкарт 2

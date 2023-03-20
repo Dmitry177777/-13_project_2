@@ -96,7 +96,7 @@ class Phone(Item):
         if isinstance(new_number_of_sim, int) and new_number_of_sim > 0:
             self.number_of_sim_ = new_number_of_sim  # сим
         else:
-           print(f'ValueError: Количество физических SIM-карт должно быть целым числом больше нуля.')
+            print(f'ValueError: Количество физических SIM-карт должно быть целым числом больше нуля.')
 
     def __repr__(self):
         return f'Phone({self.name}, {self.price}, {self.quantity},{self.number_of_sim})'
@@ -104,28 +104,38 @@ class Phone(Item):
     def __str__(self):
         return f'{self.name}'
 
+
 class MixingLog:
     def __init__(self, *args):
-        cls = type (self)
-        cls.language = 'EN'
-        self.language=cls.language
+        cls = type(self)
+        cls.language_ = 'EN'  # Язык по умолчанию (при инициализации) - английский (EN)
+        self.language_ = cls.language_
         super().__init__(*args)
 
     def change_lang(self):
-        if self.language =='EN':
+        if self.language == 'EN':
             self.language = 'RU'
         else:
             self.language = 'EN'
 
+    @property
+    def language(self):
+        return self.language_
 
-class KeyBoard(MixingLog,Item):
+    @language.setter
+    def language(self, new_language):
+        if new_language == 'RU' or new_language == 'EN':
+            self.language_ = new_language  # присвоение новой раскладки языка
+        else:
+            print(f"AttributeError: property 'language' of 'KeyBoard' object has no setter")
+
+
+class KeyBoard(MixingLog, Item):
     """ новый наследуемый класс"""
 
     def __init__(self, name, price, quantity):
         super().__init__(name, price, quantity)
-        self.language  = EN  # Язык по умолчанию (при инициализации) - английский (EN)
-
-
+        # self.language_ = 'EN'  # Язык по умолчанию (при инициализации) - английский (EN)
 
 
 class dotdict(dict):
