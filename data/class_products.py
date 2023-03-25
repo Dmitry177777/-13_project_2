@@ -56,12 +56,12 @@ class Item():
 
         except(FileNotFoundError):
             print(f"FileNotFoundError: Отсутствует файл {f}")
-        except(InstantiateCSVError):
+        except(KeyError):
             print(f"InstantiateCSVError: Файл {f} поврежден")
         else:
             print(f"файл {f} загружен")
-        finally:
-            print(f"окончание процедуры загрузки")
+        # finally:
+        #     print(f"окончание процедуры загрузки")
         return cls.all
 
     def calculate_total_price(self):

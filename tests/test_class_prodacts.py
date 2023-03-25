@@ -21,6 +21,9 @@ item_all = [{'_name': 'Смартфон', 'price': 10000, 'quantity': 20},
 
 phone1 = Phone('iPhone 14', 120_000, 5, 2)
 kb1 = KeyBoard('Dark Project KD87A', 9600, 5)
+f = '..\data\items.csv'
+f1 = '..\data\items2.csv'
+f2 = '..\data\items1.csv'
 
 
 def test_init():
@@ -39,6 +42,11 @@ def test_init():
 
     # Item.all.append(Item)
 
+
+def test_instantiate_from_csv():
+    assert Item.instantiate_from_csv(f) == "файл ..\data\items.csv загружен"
+    assert Item.instantiate_from_csv(f1) == "FileNotFoundError: Отсутствует файл ..\data\items2.csv"
+    assert Item.instantiate_from_csv(f2) == "InstantiateCSVError: Файл ..\data\items1.csv поврежден"
 
 def test_change_lang():
     assert kb1.language == "EN"
