@@ -43,6 +43,7 @@ def test_init():
     # Item.all.append(Item)
 
 
+
 def test_instantiate_from_csv():
     assert Item.instantiate_from_csv(f) == "файл ..\data\items.csv загружен"
     assert Item.instantiate_from_csv(f1) == "FileNotFoundError: Отсутствует файл ..\data\items2.csv"
