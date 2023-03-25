@@ -38,22 +38,32 @@ class Item():
     @classmethod
     def instantiate_from_csv(cls, f):
         """выгрузка и инициализация данных из файла csv"""
+        try:
+            # fieldnames = ['name', 'price', 'quantity']
+            with open(f, newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
 
-        # fieldnames = ['name', 'price', 'quantity']
-        with open(f, newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
+                for row in reader:
+                    row_name = row['name']
+                    row_price = row['price']
+                    row_quantity = row['quantity']
+                    if Item.is_integer(row_price):
+                        row_price = int(row_price)
+                    if Item.is_integer(row_quantity):
+                        row_quantity = int(row_quantity)
 
-            for row in reader:
-                row_name = row['name']
-                row_price = row['price']
-                row_quantity = row['quantity']
-                if Item.is_integer(row_price):
-                    row_price = int(row_price)
-                if Item.is_integer(row_quantity):
-                    row_quantity = int(row_quantity)
+                    cls.all.append(cls(row_name, row_price, row_quantity).__dict__)
 
-                cls.all.append(cls(row_name, row_price, row_quantity).__dict__)
+        except(FileNotFoundError):
+            print(f"FileNotFoundError: Отсутствует файл {f}")
+        except(InstantiateCSVError):
+            print(f"InstantiateCSVError: Файл {f} поврежден")
+        else:
+            print(f"файл {f} загружен")
+        finally:
+            print(f"окончание процедуры загрузки")
         return cls.all
+
     def calculate_total_price(self):
         """Метод расчета общей стоимости"""
 

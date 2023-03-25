@@ -1,18 +1,34 @@
-# from data.class_products import Item
+from data.class_products import Item
 # from data.class_products import Phone
-from data.class_products import KeyBoard
 
-kb = KeyBoard('Dark Project KD87A', 9600, 5)
-print(kb)
-# Dark Project KD87A
-print(kb.language)
-# EN
+#адрес файла
+f = '..\data\items.csv'
+# Файл items.csv отсутствует.
+Item.instantiate_from_csv(f)
+# файл ..\data\items.csv загружен"
 
-kb.change_lang()
-print(kb.language)
-# RU
+#адрес файла
+f = '..\data\items2.csv'
+# Файл items.csv отсутствует.
+Item.instantiate_from_csv(f)
+# FileNotFoundError: Отсутствует файл item2.csv
 
-kb.language = 'CH'
+f = '..\data\items1.csv'
+# В файле items.csv удалена последняя колонка.
+Item.instantiate_from_csv(f)
+# InstantiateCSVError: Файл item1.csv поврежден
+
+# kb = KeyBoard('Dark Project KD87A', 9600, 5)
+# print(kb)
+# # Dark Project KD87A
+# print(kb.language)
+# # EN
+#
+# kb.change_lang()
+# print(kb.language)
+# # RU
+# #
+# kb.language = 'CH'
 
 # AttributeError: property 'language' of 'KeyBoard' object has no setter
 
