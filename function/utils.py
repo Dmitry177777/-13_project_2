@@ -1,13 +1,14 @@
 from data.class_products import Item
+
 # from data.class_products import Phone
 
-#адрес файла
+# адрес файла
 f = '..\data\items.csv'
 # Файл items.csv отсутствует.
 Item.instantiate_from_csv(f)
 # файл ..\data\items.csv загружен"
 
-#адрес файла
+# адрес файла
 f = '..\data\items2.csv'
 # Файл items.csv отсутствует.
 Item.instantiate_from_csv(f)
