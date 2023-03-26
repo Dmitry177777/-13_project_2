@@ -1,5 +1,7 @@
 import csv
 
+class InstantiateCSVError (Exception):
+    pass
 
 class Item():
     """"Класс категорий товаров"""
@@ -38,31 +40,38 @@ class Item():
     @classmethod
     def instantiate_from_csv(cls, f):
         """выгрузка и инициализация данных из файла csv"""
-        try:
-            # fieldnames = ['name', 'price', 'quantity']
-            with open(f, newline='') as csvfile:
-                reader = csv.DictReader(csvfile)
 
-                for row in reader:
+        # fieldnames = ['name', 'price', 'quantity']
+        with open(f, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+
+
+
+
+            for row in reader:
+                if row['name'] :
                     row_name = row['name']
+                else:
+                    raise InstantiateCSVError
+                if row['price']:
                     row_price = row['price']
+                else:
+                    raise InstantiateCSVError
+                if row['name'] :
                     row_quantity = row['quantity']
-                    if Item.is_integer(row_price):
-                        row_price = int(row_price)
-                    if Item.is_integer(row_quantity):
-                        row_quantity = int(row_quantity)
+                else:
+                    raise InstantiateCSVError
 
-                    cls.all.append(cls(row_name, row_price, row_quantity).__dict__)
 
-        except(FileNotFoundError):
-            print(f"FileNotFoundError: Отсутствует файл {f}")
-        except(KeyError):
-            print(f"InstantiateCSVError: Файл {f} поврежден")
-        else:
-            print(f"файл {f} загружен")
-        # finally:
-        #     print(f"окончание процедуры загрузки")
+            if Item.is_integer(row_price):
+                row_price = int(row_price)
+            if Item.is_integer(row_quantity):
+                row_quantity = int(row_quantity)
+
+        cls.all.append(cls(row_name, row_price, row_quantity).__dict__)
+
         return cls.all
+
 
     def calculate_total_price(self):
         """Метод расчета общей стоимости"""
@@ -84,6 +93,14 @@ class Item():
         # isInt = isinstance(number, int)
         isInt = int(x) == x
         return isInt  # True
+
+
+try:
+    Item
+except FileNotFoundError:
+    print(f"FileNotFoundError: Отсутствует файл")
+except InstantiateCSVError:
+    print(f"InstantiateCSVError: Файл поврежден")
 
 
 class Phone(Item):
