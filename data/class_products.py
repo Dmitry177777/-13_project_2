@@ -41,34 +41,39 @@ class Item():
     def instantiate_from_csv(cls, f):
         """выгрузка и инициализация данных из файла csv"""
 
-        # fieldnames = ['name', 'price', 'quantity']
-        with open(f, newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
+        try:
 
+            # fieldnames = ['name', 'price', 'quantity']
+            with open(f, newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
 
+                for row in reader:
+                    if row.get('name') != None:
+                        row_name = row['name']
+                    else:
+                        raise InstantiateCSVError
+                    if row.get('price') != None:
+                        row_price = row['price']
+                    else:
+                        raise InstantiateCSVError
+                    if row.get('quantity') != None:
+                        row_quantity = row['quantity']
+                    else:
+                        raise InstantiateCSVError
 
+                if Item.is_integer(row_price):
+                    row_price = int(row_price)
+                if Item.is_integer(row_quantity):
+                    row_quantity = int(row_quantity)
 
-            for row in reader:
-                if row['name'] :
-                    row_name = row['name']
-                else:
-                    raise InstantiateCSVError
-                if row['price']:
-                    row_price = row['price']
-                else:
-                    raise InstantiateCSVError
-                if row['name'] :
-                    row_quantity = row['quantity']
-                else:
-                    raise InstantiateCSVError
+            cls.all.append(cls(row_name, row_price, row_quantity).__dict__)
 
-
-            if Item.is_integer(row_price):
-                row_price = int(row_price)
-            if Item.is_integer(row_quantity):
-                row_quantity = int(row_quantity)
-
-        cls.all.append(cls(row_name, row_price, row_quantity).__dict__)
+        except FileNotFoundError:
+            print(f"FileNotFoundError: Отсутствует файл {f}")
+        except InstantiateCSVError:
+            print(f"InstantiateCSVError: Файл {f} поврежден ")
+        # finally:
+        # print(f"Файл {f} закрыт ")
 
         return cls.all
 
@@ -95,12 +100,6 @@ class Item():
         return isInt  # True
 
 
-try:
-    Item
-except FileNotFoundError:
-    print(f"FileNotFoundError: Отсутствует файл")
-except InstantiateCSVError:
-    print(f"InstantiateCSVError: Файл поврежден")
 
 
 class Phone(Item):
